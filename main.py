@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 
 index = []
 category_links = {}
+subcategory_links = {}
 
 r = requests.get('http://us.battle.net/sc2/en/profile/2950613/1/NDSCRMNTJSTC/achievements/')
 text_res = r.text
@@ -18,13 +19,14 @@ for link in soup.find_all('a'):
 
 for i in index:
     print i
-    print category_links[i]
-
-#r = requests.get('http://us.battle.net'+category_links[index[0]])
-#text_res = r.text
+    r = requests.get('http://us.battle.net'+category_links[index[0]])
+    text_res = r.text
+    soup = BeautifulSoup(text_res.encode('ascii','ignore'))
+    for subcat in soup.find_all('a'):
+        if subcat.get('href').find('NDSCRMNTJSTC/achievements/category') != -1:
+            print '>' + subcat.get_text().strip()
+            print '>' + subcat.get('href')
 #
-#soup = BeautifulSoup(text_res.encode('ascii','ignore'))
 #
-#print soup.prettify()
 #for link in soup.find_all('div'):
 #    print link
