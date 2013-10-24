@@ -19,7 +19,7 @@ for link in soup.find_all('a'):
 
 for i in index:
     print i
-    r = requests.get('http://us.battle.net'+category_links[index[0]])
+    r = requests.get('http://us.battle.net'+category_links[i])
     text_res = r.text
     soup = BeautifulSoup(text_res.encode('ascii','ignore'))
     for subcat in soup.find_all('a'):
