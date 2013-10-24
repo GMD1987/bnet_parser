@@ -25,7 +25,7 @@ for i in index:
     for subcat in soup.find_all('a'):
         if subcat.get('href').find('NDSCRMNTJSTC/achievements/category') != -1:
             print '>' + subcat.get_text().strip()
-            print '>' + subcat.get('href')
+            print '>http://us.battle.net' + subcat.get('href')
 #
 #
 #for link in soup.find_all('div'):
